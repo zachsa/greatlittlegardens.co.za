@@ -11,8 +11,8 @@
   --color-bg-charcoal: #1a1a1a;
 
   /* overlays */
-  --color-overlay-top: rgba(0, 0, 0, 0.35);
-  --color-overlay-bottom: rgba(0, 0, 0, 0.65);
+  --color-overlay-top: rgba(0, 0, 0, 0.05);
+  --color-overlay-bottom: rgba(0, 0, 0, 0.7);
 
   /* borders */
   --color-border-soft: rgba(255, 255, 255, 0.14);
@@ -196,6 +196,10 @@ h1 {
 
 .contact a {
   opacity: 0.9;
+}
+
+.contact .phone-number {
+  font-size: 1.5rem;
 }
 
 .contact a:hover {
