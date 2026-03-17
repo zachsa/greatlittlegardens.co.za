@@ -85,14 +85,437 @@
       }
     </script>
 
-    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* ---------------------------
+   Theme
+---------------------------- */
+
+      :root {
+        /* neutrals */
+        --color-text: #f1f1f1;
+        --color-text-soft: #d6d6d6;
+
+        --color-bg-dark: #121212;
+        --color-bg-charcoal: #1a1a1a;
+
+        /* overlays */
+        --color-overlay-top: rgba(0, 0, 0, 0.05);
+        --color-overlay-bottom: rgba(0, 0, 0, 0.7);
+
+        /* borders */
+        --color-border-soft: rgba(255, 255, 255, 0.14);
+
+        /* shadows */
+        --shadow-soft: rgba(0, 0, 0, 0.35);
+        --shadow-strong: rgba(0, 0, 0, 0.45);
+
+        /* whatsapp */
+        --color-whatsapp: #25d366;
+      }
+
+      /* ---------------------------
+   Reset
+---------------------------- */
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+
+        font-family:
+          "Inter",
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          Roboto,
+          Helvetica,
+          Arial,
+          sans-serif;
+
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+
+        color: var(--color-text);
+        background: var(--color-bg-dark);
+
+        overflow: hidden;
+      }
+
+      /* Media defaults */
+
+      img,
+      picture,
+      video,
+      canvas,
+      svg {
+        display: block;
+        max-width: 100%;
+      }
+
+      /* Form elements inherit font */
+
+      input,
+      button,
+      textarea,
+      select {
+        font: inherit;
+      }
+
+      /* Prevent text overflow */
+
+      p,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        overflow-wrap: break-word;
+      }
+
+      /* Links */
+
+      a {
+        color: var(--color-text-soft);
+        text-decoration: none;
+      }
+
+      /* ---------------------------
+   Header
+---------------------------- */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  z-index: 10;
+
+  background: var(--color-bg-charcoal);
+
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+.header-inner {
+  max-width: 1100px;
+  margin: 0;
+
+  padding: 14px 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Brand */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Leaf logo */
+
+.logo {
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #9fd3a5; /* soft natural green */
+  opacity: 0.9;
+}
+
+.logo svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+/* Brand text */
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.brand-name {
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+
+  color: var(--color-text);
+}
+
+.hero {
+  padding-top: 80px;
+}
+
+.brand-location {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  color: var(--color-text-soft);
+  opacity: 0.7;
+}
+
+      /* ---------------------------
+   Layout
+---------------------------- */
+
+      .hero {
+        flex: 1;
+        position: relative;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        text-align: center;
+
+        background-image: url("pond-background.webp");
+        background-size: cover;
+        background-position: center;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+
+        background: linear-gradient(
+          to bottom,
+          var(--color-overlay-top),
+          var(--color-overlay-bottom)
+        );
+
+        z-index: 1;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+
+        padding: 2rem;
+
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+
+      /* ---------------------------
+   Typography
+---------------------------- */
+
+      h1 {
+        font-family: "Playfair Display", serif;
+        font-weight: 600;
+
+        font-size: clamp(2.7rem, 5vw, 4rem);
+
+        letter-spacing: 0.03em;
+        line-height: 1.1;
+
+        text-shadow: 0 3px 18px var(--shadow-strong);
+      }
+
+      .tagline {
+        font-size: 1.2rem;
+        font-weight: 300;
+        line-height: 1.65;
+
+        color: var(--color-text-soft);
+
+        opacity: 0.95;
+        max-width: 560px;
+
+        margin: 0 auto;
+
+        text-shadow: 0 2px 12px var(--shadow-soft);
+      }
+
+      /* ---------------------------
+   Contact
+---------------------------- */
+
+      .contact {
+        margin-top: 0.75rem;
+
+        display: flex;
+        flex-direction: column;
+        gap: 0.45rem;
+
+        font-size: 1rem;
+        letter-spacing: 0.02em;
+      }
+
+      .contact a {
+        opacity: 0.9;
+      }
+
+      .contact .phone-number {
+        font-size: 1.5rem;
+        margin-bottom: 16px;
+      }
+
+      .contact a:hover {
+        opacity: 1;
+        text-decoration: underline;
+      }
+
+      .contact div {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      /* ---------------------------
+   WhatsApp Button
+---------------------------- */
+
+      .whatsapp-button {
+        position: fixed;
+
+        right: 24px;
+        bottom: 48px;
+
+        width: 64px;
+        height: 64px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: var(--color-whatsapp);
+        border-radius: 50%;
+
+        text-decoration: none;
+
+        box-shadow:
+          0 8px 22px var(--shadow-soft),
+          0 0 0 0 rgba(37, 211, 102, 0.6);
+
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+
+        z-index: 99;
+
+        animation: whatsapp-pulse 2.5s infinite;
+      }
+
+      .whatsapp-button svg {
+        width: 30px;
+        height: 30px;
+
+        fill: white;
+
+        transition: transform 0.45s ease;
+      }
+
+      .whatsapp-button:hover {
+        transform: scale(1.12);
+
+        box-shadow:
+          0 10px 28px rgba(0, 0, 0, 0.4),
+          0 0 18px rgba(37, 211, 102, 0.6);
+      }
+
+      .whatsapp-button:hover svg {
+        transform: rotate(360deg);
+      }
+
+      .whatsapp-button:active {
+        transform: scale(0.95);
+      }
+
+      @keyframes whatsapp-pulse {
+        0% {
+          box-shadow:
+            0 8px 22px var(--shadow-soft),
+            0 0 0 0 rgba(37, 211, 102, 0.5);
+        }
+
+        70% {
+          box-shadow:
+            0 8px 22px var(--shadow-soft),
+            0 0 0 14px rgba(37, 211, 102, 0);
+        }
+
+        100% {
+          box-shadow:
+            0 8px 22px var(--shadow-soft),
+            0 0 0 0 rgba(37, 211, 102, 0);
+        }
+      }
+
+      /* --------------------------- Footer ---------------------------- */
+
+      .footer {
+        text-align: center;
+
+        background: var(--color-bg-charcoal);
+
+        padding: 6px 0;
+        font-size: 11px;
+
+        border-top: 1px solid var(--color-border-soft);
+
+        color: var(--color-text-soft);
+      }
+
+      /* --------------------------- Responsive ---------------------------- */
+
+      @media (max-width: 640px) {
+        .hero-content {
+          padding: 1.6rem;
+        }
+
+        .tagline {
+          font-size: 1.05rem;
+        }
+      }
+    </style>
   </head>
 
   <body>
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand">
+      <div class="logo">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z"
+          />
+        </svg>
+      </div>
+
+      <div class="brand-text">
+        <span class="brand-name">great little gardens</span>
+        <span class="brand-location">Cape Town Southern Peninsula</span>
+      </div>
+    </div>
+  </div>
+</header>
     <section class="hero">
       <div class="hero-content">
-        <h1>great little gardens</h1>
-
         <p class="tagline">
           Beautiful gardens thoughtfully designed and lovingly maintained.
           Serving the Cape Town Southern Peninsula. Contact Lute Jowell for a

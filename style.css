@@ -118,7 +118,8 @@ a {
 
   text-align: center;
 
-  background-image: url("pond-background.webp");
+  /* background-image: url("pond-background.webp"); */
+  background-image: url("bg5.jpg");
   background-size: cover;
   background-position: center;
 }
